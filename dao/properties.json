@@ -1,0 +1,282 @@
+[
+    {
+        "id": 1,
+        "address": {
+            "country": "Russia",
+            "city": "Moscow",
+            "zip_code": 101000,
+            "street": "Tverskaya Street",
+            "building": "7",
+            "floor": 3,
+            "appartment": "12"
+        },
+        "area": 68.5,
+        "owner_id": 201
+    },
+    {
+        "id": 2,
+        "address": {
+            "country": "Russia",
+            "city": "Saint Petersburg",
+            "zip_code": 190000,
+            "street": "Nevsky Prospect",
+            "building": "14",
+            "floor": 5,
+            "appartment": "45"
+        },
+        "area": 85.0,
+        "owner_id": 202
+    },
+    {
+        "id": 3,
+        "address": {
+            "country": "Russia",
+            "city": "Moscow",
+            "zip_code": 125009,
+            "street": "Arbat Street",
+            "building": "32",
+            "floor": 6,
+            "appartment": "23"
+        },
+        "area": 92.3,
+        "owner_id": 203
+    },
+    {
+        "id": 4,
+        "address": {
+            "country": "Russia",
+            "city": "Saint Petersburg",
+            "zip_code": 198216,
+            "street": "Ligovsky Avenue",
+            "building": "50",
+            "floor": 4,
+            "appartment": "67"
+        },
+        "area": 78.9,
+        "owner_id": 204
+    },
+    {
+        "id": 5,
+        "address": {
+            "country": "Russia",
+            "city": "Moscow",
+            "zip_code": 119048,
+            "street": "Kutuzovsky Prospect",
+            "building": "18",
+            "floor": 9,
+            "appartment": null
+        },
+        "area": 120.0,
+        "owner_id": 205
+    },
+    {
+        "id": 6,
+        "address": {
+            "country": "Russia",
+            "city": "Saint Petersburg",
+            "zip_code": 190121,
+            "street": "Sadovaya Street",
+            "building": "8",
+            "floor": 2,
+            "appartment": "15"
+        },
+        "area": 65.7,
+        "owner_id": 206
+    },
+    {
+        "id": 7,
+        "address": {
+            "country": "Russia",
+            "city": "Moscow",
+            "zip_code": 109004,
+            "street": "Taganskaya Street",
+            "building": "22",
+            "floor": 7,
+            "appartment": null
+        },
+        "area": 74.4,
+        "owner_id": 207
+    },
+    {
+        "id": 8,
+        "address": {
+            "country": "Russia",
+            "city": "Saint Petersburg",
+            "zip_code": 199106,
+            "street": "Vasilievsky Island, Line 6",
+            "building": "3",
+            "floor": 1,
+            "appartment": "9"
+        },
+        "area": 55.0,
+        "owner_id": 208
+    },
+    {
+        "id": 9,
+        "address": {
+            "country": "Russia",
+            "city": "Moscow",
+            "zip_code": 127006,
+            "street": "Bolshaya Dmitrovka Street",
+            "building": "5",
+            "floor": 10,
+            "appartment": "101"
+        },
+        "area": 96.2,
+        "owner_id": 209
+    },
+    {
+        "id": 10,
+        "address": {
+            "country": "Russia",
+            "city": "Saint Petersburg",
+            "zip_code": 191036,
+            "street": "Rubinstein Street",
+            "building": "24",
+            "floor": 5,
+            "appartment": null
+        },
+        "area": 82.1,
+        "owner_id": 210
+    },
+    {
+        "id": 11,
+        "address": {
+            "country": "Russia",
+            "city": "Moscow",
+            "zip_code": 117105,
+            "street": "Profsoyuznaya Street",
+            "building": "61",
+            "floor": 12,
+            "appartment": "214"
+        },
+        "area": 64.5,
+        "owner_id": 211
+    },
+    {
+        "id": 12,
+        "address": {
+            "country": "Russia",
+            "city": "Saint Petersburg",
+            "zip_code": 198330,
+            "street": "Prospect Veteranov",
+            "building": "29",
+            "floor": 6,
+            "appartment": "301"
+        },
+        "area": 74.0,
+        "owner_id": 212
+    },
+    {
+        "id": 13,
+        "address": {
+            "country": "Russia",
+            "city": "Moscow",
+            "zip_code": 123001,
+            "street": "Presnenskaya Embankment",
+            "building": "10",
+            "floor": null,
+            "appartment": "101"
+        },
+        "area": 115.3,
+        "owner_id": 213
+    },
+    {
+        "id": 14,
+        "address": {
+            "country": "Russia",
+            "city": "Saint Petersburg",
+            "zip_code": 190020,
+            "street": "Zagorodny Prospect",
+            "building": "12",
+            "floor": 3,
+            "appartment": "45"
+        },
+        "area": 81.0,
+        "owner_id": 214
+    },
+    {
+        "id": 15,
+        "address": {
+            "country": "Russia",
+            "city": "Moscow",
+            "zip_code": 115054,
+            "street": "Pyatnitskaya Street",
+            "building": "18",
+            "floor": 8,
+            "appartment": "85"
+        },
+        "area": 95.6,
+        "owner_id": 215
+    },
+    {
+        "id": 16,
+        "address": {
+            "country": "Russia",
+            "city": "Saint Petersburg",
+            "zip_code": 191123,
+            "street": "Liteyny Prospect",
+            "building": "33",
+            "floor": 5,
+            "appartment": "120"
+        },
+        "area": 67.8,
+        "owner_id": 216
+    },
+    {
+        "id": 17,
+        "address": {
+            "country": "Russia",
+            "city": "Moscow",
+            "zip_code": 117420,
+            "street": "Leninsky Prospect",
+            "building": "98",
+            "floor": null,
+            "appartment": "45"
+        },
+        "area": 77.9,
+        "owner_id": 217
+    },
+    {
+        "id": 18,
+        "address": {
+            "country": "Russia",
+            "city": "Saint Petersburg",
+            "zip_code": 190123,
+            "street": "Kirochnaya Street",
+            "building": "11",
+            "floor": 4,
+            "appartment": null
+        },
+        "area": 58.0,
+        "owner_id": 218
+    },
+    {
+        "id": 19,
+        "address": {
+            "country": "Russia",
+            "city": "Moscow",
+            "zip_code": 123112,
+            "street": "Shmitovsky Prospect",
+            "building": "2",
+            "floor": 6,
+            "appartment": "55"
+        },
+        "area": 91.7,
+        "owner_id": 219
+    },
+    {
+        "id": 20,
+        "address": {
+            "country": "Russia",
+            "city": "Saint Petersburg",
+            "zip_code": 190020,
+            "street": "Fontanka Embankment",
+            "building": "46",
+            "floor": null,
+            "appartment": null
+        },
+        "area": 104.0,
+        "owner_id": 220
+    }
+]

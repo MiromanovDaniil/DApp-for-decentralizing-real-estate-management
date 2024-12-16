@@ -1,0 +1,72 @@
+[
+    {
+        "id": 1,
+        "first_name": "Ivan",
+        "last_name": "Petrov",
+        "wallet_id": 1001,
+        "property": [1]
+    },
+    {
+        "id": 2,
+        "first_name": "Olga",
+        "last_name": "Ivanova",
+        "wallet_id": 1002,
+        "property": [2]
+    },
+    {
+        "id": 3,
+        "first_name": "Sergey",
+        "last_name": "Kuznetsov",
+        "wallet_id": 1003,
+        "property": null
+    },
+    {
+        "id": 4,
+        "first_name": "Natalia",
+        "last_name": "Sokolova",
+        "wallet_id": 1004,
+        "property": null
+    },
+    {
+        "id": 5,
+        "first_name": "Alexey",
+        "last_name": "Smirnov",
+        "wallet_id": 1005,
+        "property": null
+    },
+    {
+        "id": 6,
+        "first_name": "Dmitry",
+        "last_name": "Vorobyov",
+        "wallet_id": 1006,
+        "property": [3]
+    },
+    {
+        "id": 7,
+        "first_name": "Marina",
+        "last_name": "Fedorova",
+        "wallet_id": 1007,
+        "property": [4, 5]
+    },
+    {
+        "id": 8,
+        "first_name": "Andrey",
+        "last_name": "Belov",
+        "wallet_id": 1008,
+        "property": [6]
+    },
+    {
+        "id": 9,
+        "first_name": "Elena",
+        "last_name": "Kovaleva",
+        "wallet_id": 1009,
+        "property": [7, 8]
+    },
+    {
+        "id": 10,
+        "first_name": "Vladimir",
+        "last_name": "Nikolaev",
+        "wallet_id": 1010,
+        "property": null
+    }
+]
