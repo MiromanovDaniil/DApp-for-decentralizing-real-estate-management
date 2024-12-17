@@ -39,13 +39,20 @@ class Customer(BaseModel):
     property: List[Property] | None
 
 
+class AdvertismentMedia(BaseModel):
+    id: int
+    path: str
+
+
 class Advertisment(BaseModel):
     id: int
-    advertiser_id: int
-    owner_id: int
+    # advertiser_id: int
+    owner_ids: List[int]
     property_id: int
     price: int
-    property_descriptions: List[PropertyAttributes] | None
+    media: List[AdvertismentMedia]
+    description: str
+    property_attributes: List[PropertyAttributes] | None
 
 
 class SmartContract:

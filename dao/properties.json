@@ -11,7 +11,7 @@
             "appartment": "12"
         },
         "area": 68.5,
-        "owner_id": 201
+        "owner_id": [2]
     },
     {
         "id": 2,
@@ -25,7 +25,7 @@
             "appartment": "45"
         },
         "area": 85.0,
-        "owner_id": 202
+        "owner_id": [2, 5]
     },
     {
         "id": 3,
@@ -39,7 +39,7 @@
             "appartment": "23"
         },
         "area": 92.3,
-        "owner_id": 203
+        "owner_id": [5]
     },
     {
         "id": 4,
@@ -53,7 +53,7 @@
             "appartment": "67"
         },
         "area": 78.9,
-        "owner_id": 204
+        "owner_id": [8]
     },
     {
         "id": 5,
@@ -67,7 +67,7 @@
             "appartment": null
         },
         "area": 120.0,
-        "owner_id": 205
+        "owner_id": [8]
     },
     {
         "id": 6,
@@ -81,7 +81,7 @@
             "appartment": "15"
         },
         "area": 65.7,
-        "owner_id": 206
+        "owner_id": [10]
     },
     {
         "id": 7,
@@ -95,7 +95,7 @@
             "appartment": null
         },
         "area": 74.4,
-        "owner_id": 207
+        "owner_id": [11, 10]
     },
     {
         "id": 8,
@@ -109,7 +109,7 @@
             "appartment": "9"
         },
         "area": 55.0,
-        "owner_id": 208
+        "owner_id": 14
     },
     {
         "id": 9,
@@ -123,7 +123,7 @@
             "appartment": "101"
         },
         "area": 96.2,
-        "owner_id": 209
+        "owner_id": 15
     },
     {
         "id": 10,
@@ -137,7 +137,7 @@
             "appartment": null
         },
         "area": 82.1,
-        "owner_id": 210
+        "owner_id": 15
     },
     {
         "id": 11,
@@ -151,7 +151,7 @@
             "appartment": "214"
         },
         "area": 64.5,
-        "owner_id": 211
+        "owner_id": 16
     },
     {
         "id": 12,
@@ -165,7 +165,7 @@
             "appartment": "301"
         },
         "area": 74.0,
-        "owner_id": 212
+        "owner_id": 17
     },
     {
         "id": 13,
@@ -179,7 +179,7 @@
             "appartment": "101"
         },
         "area": 115.3,
-        "owner_id": 213
+        "owner_id": 17
     },
     {
         "id": 14,
@@ -193,7 +193,7 @@
             "appartment": "45"
         },
         "area": 81.0,
-        "owner_id": 214
+        "owner_id": 18
     },
     {
         "id": 15,
@@ -207,7 +207,7 @@
             "appartment": "85"
         },
         "area": 95.6,
-        "owner_id": 215
+        "owner_id": 10
     },
     {
         "id": 16,
@@ -221,7 +221,7 @@
             "appartment": "120"
         },
         "area": 67.8,
-        "owner_id": 216
+        "owner_id": 18
     },
     {
         "id": 17,
@@ -235,7 +235,7 @@
             "appartment": "45"
         },
         "area": 77.9,
-        "owner_id": 217
+        "owner_id": 1
     },
     {
         "id": 18,
@@ -249,7 +249,7 @@
             "appartment": null
         },
         "area": 58.0,
-        "owner_id": 218
+        "owner_id": 2
     },
     {
         "id": 19,
@@ -263,7 +263,7 @@
             "appartment": "55"
         },
         "area": 91.7,
-        "owner_id": 219
+        "owner_id": 7
     },
     {
         "id": 20,
@@ -277,6 +277,6 @@
             "appartment": null
         },
         "area": 104.0,
-        "owner_id": 220
+        "owner_id": 16
     }
 ]
