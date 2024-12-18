@@ -3,6 +3,7 @@ CREATE TABLE customer IF NOT EXISTS(
     customer_id INTEGER NOT NULL PRIMARY_KEY,
     customer_first_name TEXT NOT NULL,
     customer_last_name TEXT NOT NULL
+    customer_tg_name TEXT NOT NULL,
 )"""
 
 
@@ -43,27 +44,29 @@ CREATE TABLE IF NOT EXISTS property (
     building TEXT NOT NULL,
     floor INTEGER,
     apartment TEXT,
+    customer_id INTEGER NOT NULL,
+    FOREIGN KEY (customer_id) REFERENCES customer(customer_id) ON DELETE CASCADE,
 )
 """
 
-create_table_customer_property_script = """
-CREATE TABLE IF NOT EXISTS customer_property (
-    customer_id INTEGER NOT NULL,
-    property_id INTEGER NOT NULL,
-    ownership_share REAL DEFAULT 1.0,
-    PRIMARY KEY (customer_id, property_id),
-    FOREIGN KEY (customer_id) REFERENCES customer(customer_id) ON DELETE CASCADE,
-    FOREIGN KEY (property_id) REFERENCES property(property_id) ON DELETE CASCADE
-)
-"""
+# create_table_customer_property_script = """
+# CREATE TABLE IF NOT EXISTS customer_property (
+#     customer_id INTEGER NOT NULL,
+#     property_id INTEGER NOT NULL,
+#     ownership_share REAL DEFAULT 1.0,
+#     PRIMARY KEY (customer_id, property_id),
+#     FOREIGN KEY (customer_id) REFERENCES customer(customer_id) ON DELETE CASCADE,
+#     FOREIGN KEY (property_id) REFERENCES property(property_id) ON DELETE CASCADE
+# )
+# """
 
 
 # TODO change property - customer relation to MANY-TO-MANY
 
 
 add_new_property_script = """
-INSERT INTO property (area, country, city, zip_code, street, building, floor, apartment)
-VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+INSERT INTO property (area, country, city, zip_code, street, building, floor, apartment, customer_id)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
 """
 
 
@@ -112,4 +115,34 @@ CREATE TABLE IF NOT EXISTS media (
     media_adv_id INTEGER,
     FOREIGN KEY (media_adv_id) REFERENCES advertisement(id)
 )
+"""
+
+
+create_table_smart_contract_script = """
+CREATE TABLE IF NOT EXISTS smart_contract (
+    contract_id INTEGER PRIMARY KEY,
+    contract_path TEXT NOT NULL
+)
+"""
+
+add_new_smart_contract_script = """
+INSERT INTO smart_contract (contract_path)
+VALUES (?)
+"""
+
+
+create_table_deposit_script = """
+CREATE TABLE IF NOT EXISTS deposit (
+    deposit_id INTEGER NOT NULL PRIMARY KEY,
+    deposit_money_amount REAL NOT NULL,
+    smart_contract_id INT NOT NULL,
+    depositor_id INT NOT NULL,
+    FOREIGN KEY (smart_contract_id) REFERENCES smart_contract(contract_id) ON DELETE CASCADE,
+    FOREIGN KEY (depositor_id) REFERENCES customer(customer_id)
+)
+"""
+
+add_new_deposit_script = """
+INSERT INTO deposit (deposit_money_amount, smart_contract_id, depositor_id)
+VALUES (?, ?, ?)
 """

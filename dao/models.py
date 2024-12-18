@@ -1,3 +1,5 @@
+import os
+from functools import wraps
 from typing import List, Literal, Optional
 
 from pydantic import BaseModel
@@ -35,6 +37,7 @@ class Customer(BaseModel):
     id: int
     first_name: str
     last_name: str
+    tg_name: str
     wallet_id: int
     property: List[Property] | None
 
@@ -55,19 +58,126 @@ class Advertisment(BaseModel):
     property_attributes: List[PropertyAttributes] | None
 
 
+DRAFT = "fraft"
+CANCELED = "canceled"
+ACTIVE = "active"
+SIGNED = "signed"
+EXECUTED = "executed"
+
+
+class Rule(BaseModel):
+    attribute_name: str
+    attribute_value: str | int | float
+    rule_name: Literal["g", "l", "eq", "geq", "leq", "neq", "nin"]
+
+
+class ContractRules(BaseModel):
+    rules: List[Rule] | None
+
+
+class Deposit(BaseModel):
+    deposit_id: int
+    depositor_id: int
+    money_amount: float
+
+
+class SmartContractModel(BaseModel):
+    contruct_id: int
+    seller_id: int
+    buyer_id: int
+    state: Literal["draft", "canceled", "active", "signed", "executed"] = "draft"
+    rules: ContractRules | None
+    deposit: Deposit | None
+
+
 class SmartContract:
     def __init__(
         self,
         contruct_id: int,
         seller_id: int,
         buyer_id: int,
-        state: Literal["draft", "signed", "executed"] = "draft",
-        rules=None,
+        state: Literal["draft", "canceled", "active", "signed", "executed"] = "draft",
+        rules: ContractRules = None,
+        deposit: Deposit = None,
     ):
-        self.contruct_id = contruct_id
-        self.seller_id = seller_id
-        self.buyer_id = buyer_id
-        self.state = state
+        self._contruct_id = contruct_id
+        self._seller_id = seller_id
+        self._buyer_id = buyer_id
+        self._state = state
+        self._rules = rules
+        self._deposit = deposit
+        # if os.path.exists(os.path.join("dao", "contracts", f"{self._contruct_id}.json")):
+        # self._contract
+        # TODO think how to fill in
+        # we will load it manually from main - if file exists - load
+        # self._contract = SmartContractModel()
+
+    def serialize(self):
+        """saves the contract"""
+        pass
+
+    def seller_only_modifier(method):
+        """
+        Decorator to ensure only the seller can execute the method
+        """
+
+        @wraps(method)
+        def wrapper(self, user_id, *args, **kwargs):
+            if user_id != self._seller_id:
+                # TODO make custom exception
+                raise PermissionError("Only the seller can perform this action.")
+            return method(self, user_id, *args, **kwargs)
+
+        return wrapper
+
+    def buyer_only_modifier(method):
+        """
+        Decorator to ensure only the seller can execute the method
+        """
+
+        @wraps(method)
+        def wrapper(self, user_id, *args, **kwargs):
+            if user_id != self._buyer_id:
+                # TODO make custom exception
+                raise PermissionError("Only the seller can perform this action.")
+            return method(self, user_id, *args, **kwargs)
+
+        return wrapper
+
+    def contract_is_active_modifier(method):
+        """
+        chechs whether a contract is active or not
+        """
+
+        @wraps(method)
+        def wrapper(self, *args, **kwargs):
+            if self._state != ACTIVE:
+                # TODO make custom exception
+                raise ValueError("Contract is not active")
+            return method(self, *args, **kwargs)
+
+        return wrapper
+
+    def run_contract_validation():
+        # gets rules -> checks them
+        pass
+
+    @contract_is_active_modifier
+    @buyer_only_modifier
+    def deposit_funds(self, byuer_id):
+        # TODO make a deposit -> construct deposit
+        pass
+
+    @contract_is_active_modifier
+    @seller_only_modifier
+    def finalize_trunsaction(self, seller_id):
+        # TODO
+        pass
+
+    @contract_is_active_modifier
+    @seller_only_modifier
+    def cancel_trunsaction(self, seller_id):
+        pass
 
 
 class SmartContract(BaseModel):

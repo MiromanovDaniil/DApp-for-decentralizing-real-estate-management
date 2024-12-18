@@ -3,7 +3,7 @@ import os
 import sqlite3 as sql
 from functools import wraps
 
-from .models import Property
+from .models import Address, Property
 from .scripts import *
 
 logging.basicConfig(level=logging.INFO, filename="")
@@ -34,14 +34,18 @@ async def initialize_db(conn: sql.Connection = None, cursor: sql.Cursor = None):
     await conn.commit()
     # await cursor.execute(create_table_address_script)
     # await conn.commit()
-    await cursor.execute(create_table_customer_property_script)
-    await conn.commit()
+    # await cursor.execute(create_table_customer_property_script)
+    # await conn.commit()
     await cursor.execute(create_table_property_specifics_sript)
     await conn.commit()
     await cursor.execute(create_table_advertisment_script)
     await conn.commit()
     await cursor.execute(create_table_advertisment_media_script)
     await conn.commit()
+    await cursor.execute(create_table_smart_contract_script)
+    await conn.commit()
+    await cursor.execute(create_table_deposit_script)
+    await conn.cursor()
 
 
 @_data_base
@@ -84,8 +88,25 @@ async def update_balance_wallet(
 
 @_data_base
 async def add_new_property(
-    property: Property,
+    customer_id: int,
+    area: float,
+    address: Address,
     conn: sql.Connection = None,
     cursor: sql.Cursor = None,
 ):
-    pass
+    await cursor.execute(
+        add_new_property_script,
+        (
+            area,
+            address.country,
+            address.city,
+            address.zip_code,
+            address.street,
+            address.building,
+            address.floor,
+            address.appartment,
+            customer_id,
+        ),
+    )
+    await conn.commit()
+    return cursor.lastrowid
