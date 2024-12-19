@@ -1,3 +1,28 @@
+"""
+db.py
+
+This module provides database functionalities for the CryptoRuble DApp, which is used for decentralizing real estate management.
+
+Imports:
+    from .models import Address, Customer, Property, Wallet
+    from .scripts import *
+    import logging
+    import os
+    import sql
+    from functools import wraps
+
+Constants:
+    DB_PATH (str): The path to the SQLite database file.
+
+Functions:
+    _data_base(func):
+        A decorator that wraps database operations in a try-except block and logs any exceptions.
+        Args:
+            func (function): The function to be wrapped.
+        Returns:
+            function: The wrapped function.
+"""
+
 import logging
 import os
 import sqlite3 as sql
@@ -12,6 +37,16 @@ DB_PATH = os.path.join("dao", "property.db")
 
 
 def _data_base(func):
+    """
+    A decorator that wraps database operations in a try-except block and logs any exceptions.
+
+    Args:
+        func (function): The function to be wrapped.
+
+    Returns:
+        function: The wrapped function.
+    """
+
     @wraps(func)
     async def wrapper(*args, **kwargs):
         try:
@@ -55,6 +90,21 @@ async def insert_new_customer(
     conn: sql.Connection = None,
     cursor: sql.Cursor = None,
 ):
+    """
+    Inserts a new customer into the database and creates a corresponding wallet.
+    Args:
+        first_name (str): The first name of the customer.
+        last_name (str): The last name of the customer.
+        conn (sql.Connection, optional): The database connection object. Defaults to None.
+        cursor (sql.Cursor, optional): The database cursor object. Defaults to None.
+    Returns:
+        int: The ID of the newly inserted customer.
+    Raises:
+        Exception: If there is an error during the database operations.
+    Note:
+        This function assumes that `create_new_customer_script` and `create_new_wallet_script`
+        are predefined SQL scripts for inserting a new customer and creating a new wallet, respectively.
+    """
     await cursor.execute(
         create_new_customer_script,
         (
@@ -76,6 +126,27 @@ async def get_customer_data(
     conn: sql.Connection = None,
     cursor: sql.Cursor = None,
 ):
+    """
+    Retrieve customer data and associated wallet information from the database.
+
+    This function fetches customer data based on either the customer ID or the
+    Telegram username. It also retrieves the associated wallet information for
+    the customer.
+
+    Args:
+        customer_id (int, optional): The ID of the customer. Defaults to None.
+        customer_tg (str, optional): The Telegram username of the customer. Defaults to None.
+        conn (sql.Connection, optional): The database connection object. Defaults to None.
+        cursor (sql.Cursor, optional): The database cursor object. Defaults to None.
+
+    Returns:
+        Customer: An instance of the Customer class containing customer and wallet data.
+
+    Raises:
+        Exception: If no customer data is found for the given ID or Telegram username.
+        Exception: If no wallet data is found for the customer.
+
+    """
     if customer_id is not None:
         #  get customer data
         await cursor.execute(
