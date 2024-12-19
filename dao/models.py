@@ -1,3 +1,4 @@
+import json
 import os
 from functools import wraps
 from typing import List, Literal, Optional
@@ -113,7 +114,6 @@ class SmartContract:
         self._buyer_id = buyer_id
         self._state = state
         self._rules = rules
-        self._deposit = deposit
         # if os.path.exists(os.path.join("dao", "contracts", f"{self._contruct_id}.json")):
         # self._contract
         # TODO think how to fill in
@@ -191,6 +191,19 @@ class SmartContract:
     @seller_only_modifier
     async def cancel_trunsaction(self, seller_id):
         await transfer_money_from_deposit(self._contruct_id, self._buyer_id)
+
+    def serialise(self):
+        contract_data = {
+            "contruct_id": self._contruct_id,
+            "seller_id": self._seller_id,
+            "buyer_id": self._buyer_id,
+            "state": self._state,
+            "rules": self._rules.model_dump() if self._rules else None,
+        }
+        with open(
+            os.path.join("dao", "contracts", f"{self._contruct_id}.json"), "w"
+        ) as f:
+            json.dump(contract_data, f, indent=4)
 
 
 class SmartContract(BaseModel):
