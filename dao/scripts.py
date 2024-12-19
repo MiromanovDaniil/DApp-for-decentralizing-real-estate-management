@@ -4,12 +4,19 @@ CREATE TABLE customer IF NOT EXISTS(
     customer_first_name TEXT NOT NULL,
     customer_last_name TEXT NOT NULL
     customer_tg_name TEXT NOT NULL,
+    customer_chat_id TEXT NOT NULL
 )"""
 
 
 create_new_customer_script = """
 INSERT INTO customer (customer_first_name, customer_last_name)
 VALUES (?, ?)"""
+
+
+get_customer_data_script = """
+SELECT * FROM customer 
+WHERE $SELECTION_FIELD = ?
+"""
 
 
 create_wallet_table_script = """
@@ -24,6 +31,12 @@ CREATE TABLE IF NOT EXISTS wallet (
 create_new_wallet_script = """
 INSERT INTO wallet (customer_id)
 VALUES (?)
+"""
+
+get_wallet_by_customer_id = """
+SELECT wallet_id, wallet_balance 
+FROM wallet
+WHERE customer_id = ?
 """
 
 update_wallet_balance_script = """
@@ -145,4 +158,14 @@ CREATE TABLE IF NOT EXISTS deposit (
 add_new_deposit_script = """
 INSERT INTO deposit (deposit_money_amount, smart_contract_id, depositor_id)
 VALUES (?, ?, ?)
+"""
+
+select_deposit_data_script = """
+SELECT deposit_id, deposit_money_amount 
+FROM deposit
+WHERE smart_contract_id = ?
+"""
+
+remove_deposit_script = """
+DELETE FROM deposit WHERE deposit_id = ? and smart_contract_id = ?
 """

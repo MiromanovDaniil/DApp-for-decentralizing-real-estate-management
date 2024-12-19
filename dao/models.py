@@ -4,10 +4,17 @@ from typing import List, Literal, Optional
 
 from pydantic import BaseModel
 
+from .db import (
+    add_new_deposit,
+    get_customer_data,
+    get_wallet_data,
+    transfer_money_from_deposit,
+)
+
 
 class Wallet(BaseModel):
     id: int
-    balance: int
+    balance: float
 
 
 class Address(BaseModel):
@@ -38,6 +45,7 @@ class Customer(BaseModel):
     first_name: str
     last_name: str
     tg_name: str
+    tg_chat_id: str
     wallet_id: int
     property: List[Property] | None
 
@@ -122,7 +130,7 @@ class SmartContract:
         """
 
         @wraps(method)
-        def wrapper(self, user_id, *args, **kwargs):
+        async def wrapper(self, user_id, *args, **kwargs):
             if user_id != self._seller_id:
                 # TODO make custom exception
                 raise PermissionError("Only the seller can perform this action.")
@@ -136,7 +144,7 @@ class SmartContract:
         """
 
         @wraps(method)
-        def wrapper(self, user_id, *args, **kwargs):
+        async def wrapper(self, user_id, *args, **kwargs):
             if user_id != self._buyer_id:
                 # TODO make custom exception
                 raise PermissionError("Only the seller can perform this action.")
@@ -150,7 +158,7 @@ class SmartContract:
         """
 
         @wraps(method)
-        def wrapper(self, *args, **kwargs):
+        async def wrapper(self, *args, **kwargs):
             if self._state != ACTIVE:
                 # TODO make custom exception
                 raise ValueError("Contract is not active")
@@ -164,20 +172,25 @@ class SmartContract:
 
     @contract_is_active_modifier
     @buyer_only_modifier
-    def deposit_funds(self, byuer_id):
-        # TODO make a deposit -> construct deposit
-        pass
+    async def deposit_funds(self, buyer_id):
+        wallet = await get_wallet_data(buyer_id)
+        if wallet.balance < self._rules[0].attribute_value:
+            raise Exception("Not enough money")
+        await add_new_deposit(
+            money_amount=self._rules[0].attribute_value,
+            contract_id=self._contruct_id,
+            depositor_id=buyer_id,
+        )
 
     @contract_is_active_modifier
     @seller_only_modifier
-    def finalize_trunsaction(self, seller_id):
-        # TODO
-        pass
+    async def finalize_trunsaction(self, seller_id):
+        await transfer_money_from_deposit(self._contruct_id, seller_id)
 
     @contract_is_active_modifier
     @seller_only_modifier
-    def cancel_trunsaction(self, seller_id):
-        pass
+    async def cancel_trunsaction(self, seller_id):
+        await transfer_money_from_deposit(self._contruct_id, self._buyer_id)
 
 
 class SmartContract(BaseModel):
